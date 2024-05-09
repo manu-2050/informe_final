@@ -1,0 +1,174 @@
+---
+title: "Densidad de Microalgas Periféricas en Tributarios del Rio Gaira, Santa Marta, Colombia."
+subtitle: "Segundo avance del estudio de caso."
+description: "Se presenta intoduccion, objetivos e ipotesis para contextualizar la base de datos seguido de la exploracion graica y las tecnicas de ordenacion PCA y NMDS."
+author: "Manuel L. Eestupiñan-Owen"
+title-block-banner: "#a6bddb"
+lang: "es-ES"
+format: 
+  html:
+    toc: True
+    toc-title: Tabla de contenido
+    code-tools: true
+    code-fold: true
+    theme: Spacelab
+editor: visual
+bibliography: references.bib
+csl: apa (1).csl
+source: 
+  quarto-pub:
+---
+
+![Tomado de: Cita. Microscopía Electrónica de Barrido: A, B: ***Cocconeis placentula***, C, D: ***Planothidium lanceolatum***, E: ***Navicula sp.***, F: ***Amphora sp.***, G: ***Surirella Susanae***, H: ***Melosira varians***.](Microscopia%20electronica%20de%20barrido_microalgas.png){fig-align="center"}
+
+# [Introducción]{style="color: #045a8d;"}
+
+PENDIENTE
+
+# [Objetivos]{style="color: #045a8d;"}
+
+### [Objetivo general]{style="color: #3690c0;"}
+
+Analizar la diferencia en la densidad y la composición de las microalgas periféricas con diferentes niveles fisicoquímicos en tres tributarios del sector medio del rio Gaira SNSM.
+
+### [Objetivos específicos]{style="color: #3690c0;"}
+
+1.  Determinar la relación entre los parámetros fisicoquímicos y la densidad de los taxones Microalgas Perifíticas en tres Tributarios de la cuenca media del Rio Gaira.
+2.  Determinar la relación de la densidad entre taxones de Microalgas Perifitícas en tres Tributarios de la cuenca media del Rio Gaira.
+3.  Determinar las variaciones de la densidad de microalgas y los factores fisicoquímicos de en cada uno de los tributarios del Rio Gaira, SNSM, Colombia.
+
+# [Pregunta de análisis]{style="color: #045a8d;"}
+
+¿Cuál es la variación en la densidad y la composición de las microalgas perifiticas con diferentes niveles fisicoquímicos en tres tributarios del sector medio del rio Gaira SNSM?? 
+
+# [Hipótesis]{style="color: #045a8d;"}
+
+**H0:** No existe diferencia en la densidad y la composición de microalgas perifíticas con diferentes niveles fisicoquímicos en los tres Tributarios de la cuenca media del Rio Gaira.
+
+**Ha:** Existe diferencia en la densidad y la composición de microalgas perifíticas con diferentes niveles fisicoquímicos en los tres Tributarios de la cuenca media del Rio Gaira.
+
+```{r,warning=FALSE,message=FALSE}
+library(ggplot2)
+library(reshape2)
+library(ggrepel)
+library(vegan)
+library(factoextra)
+library(ggsci)
+library(ggforce)
+library(concaveman)
+library(corrplot)
+
+library(readxl)
+library(dplyr)
+library(kableExtra)
+```
+
+# [Base de datos]{style="color: #045a8d;"}
+
+```{r,warning=FALSE,message=FALSE}
+microalgas <- read_excel("microalgas.xlsx")
+```
+
+## [Variables trasformadas]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE}
+# Variables ambientales
+amb = log10(microalgas[,c(2:8)]+1)
+
+# Variables biologicas transformados con Hellinger
+bio = decostand(microalgas[,c(10:19)],"hellinger")
+```
+
+# [Exploracion grafica]{style="color: #045a8d;"}
+
+```{r}
+head(microalgas) %>%
+  kbl(booktabs = F) %>%
+  kable_classic(full_width = F, html_font = "Cambria")
+```
+
+## [Figura de elipces]{style="color: #3690c0;"}
+
+![Relación entre las variables ambientales y los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira. Las elipse con azul intenso representan las relaciones lineales positivas y las de color rojo intenso, corresponden a las relaciones lineales negativas o inversas entre las parejas de variables.](Exploratorios_microalgas_files/figure-html/fig-fig1-1.png){#fig-Figura1 fig-align="center" width="700"}
+
+En la @fig-Figura1 se observan algunas relaciones lineales fuertes entre taxones como es el caso de ***Surirella*** con ***Girosigma*** y ***Gomphonema***. Las relaciones màs fuertes se estan dando entre parejas de taxones. Sin embargo en general no se presentan muchas relaciones lineales fuertes tanto positivas como negativas.
+
+## [Figuras de elipces con variables transformadas]{style="color: #3690c0;"}
+
+![Relación entre los taxones VS los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira.](Exploratorios_microalgas_files/figure-html/fig-fig2-1.png){#fig-Figura2 fig-align="center" width="700"}
+
+En la @fig-Figura2 se observan unicamente relaciones lineales positivas entre parejas de taxones y se descartan las relaciones más bajas. En general todas las relaciones son batante fuertes las más significativas estan dadas entre ***Calonesis*** con ***Girosigma*** y ***Chamaepinnularia*** con ***Eolimna.*** Se observaque en mayor o menor proporcion la presencia de los diferentes taxones se encuentra favoreciendo a los demás taxones.
+
+Figura 3. Ambientales y biologicas VS Ambientales y biologicas transformadas con Hellinger.
+
+![Relación entre las variables ambientales VS los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira.](Exploratorios_microalgas_files/figure-html/fig-fig3-1.png){#fig-Figura3 fig-align="center" width="700"}
+
+En la @fig-Figura3 se observan muy pocas relaciones significativas entre las variables fisicoquimicas y los taxones. Se encuentran algunas relaciones negativas entre la Luz y ***Surirella***, ***Lyngbya***, ***Eolimna*** y ***Gomphonema***. En cuanto a las demás parejas de variables se aprecian algunas relaciones positivas con la temperatura y el pH, siendo la relacion entre la temperatura y ***Surirella*** la más fuerte.
+
+## [Figura de cajas]{style="color: #3690c0;"}
+
+![Variación en la densidad de microalgas para los tres tributarios de la cuenca media del Rio Gaira.](Exploratorios_microalgas_files/figure-html/fig-fig4-1.png){#fig-Figura4 fig-align="center" width="700"}
+
+En la @fig-Figura4 se puede observar que las cajas se encuentran solapadas y las medianas de los tres tributarios son practicamente iguales, además existe unan alta dispersion de los datos, lo que indica que no existe una verdadera diferenciacion en la densidad de microalgas entre cada tributario evaluado.
+
+![Variación entre la densidad de los diferentes taxones de microalgas perifiticas para los tres tributarios de la cuenca media del Rio Gaira.](Exploratorios_microalgas_files/figure-html/fig-fig5-1.png){#fig-Figura5 fig-align="center" width="700"}
+
+En la @fig-Figura5 se observa que en general para la mayoria de los taxones no existe una diferencia en la densidad total de microalgas por cada tributario, las medias de los tres tributarios son similares y los intervalos de confianza se encuentran solapados. Para el taxon ***Achnanthes*** se puede observar que en tributario Jabali los datos de densidad se alejan de la tendencia anteriormente mencionada y en otros taxones como ***Girosigma*** y ***Suriella*** los valores de densidad presentan una dispercion mucho mayor en el tributario La Victoria.
+
+![Distribucion de frecuencia de los factores fisicoquimicos en cada uno de los tres tributarios evaluados.](Exploratorios_microalgas_files/figure-html/fig-fig6-1.png){#fig-Figura6 fig-align="center" width="700"}
+
+En la @fig-Figura6 se observa que para todas las variables ambientales los valores de la media son muy similares o incluso iguales en algunos casos para cada uno de los trubutarios, mientras que el rango de los datos varia mucho más entre tributarios para algunas variables como el Nitrito. Sin enbargo para todos los fisicoquimicos exepto el Oxigeno existe la precencia de outliers los cuales pueden causar sesgos en parametros como la media, distarcionar considerablemente el analisis grafico alterando las escalas lo que puede ocacionar que los datos parescan más dipersos de lo que en verdad son. Todo esto puede ocultar patrones importantes llevando a conclusiones sesgadas.
+
+# [Análisis de Componentes Principales (PCA)]{style="color: #045a8d;"}
+
+![Contribución de cada componente.](Segundo_avance_files/figure-html/7.png){#fig-Figura7 fig-align="center"}
+
+En la @fig-Figura7 se obserba que el primer componente recoge una varianza del 46.6% mientras que el segundo componente recoge un 15.% de la varianza.
+
+![Contribución de variables en componente 1.](Segundo_avance_files/figure-html/9.png){#fig-Figura8 fig-align="center"}
+
+En la @fig-Figura8 se obserba que Lyngbya es el taxon de mayor aporte en el primer componente.
+
+![Contribución de variables en componente 2.](Segundo_avance_files/figure-html/8.png){#fig-Figura9 fig-align="center"}
+
+En la @fig-Figura9 se obserba que Amphora Eolimna Caloneis Cocconeis Gomphonema son los taxones de mayor aporte en el segundo componente.
+
+### [Figura del PCA]{style="color: #3690c0;"}
+
+![Análisis de componentes principales (PCA). A la izquierda se presenta el biplot de las componentes principales por Tributario (elipses). Los vectores representan los taxones y los puntos las variables ambientales. A la derecha se observan el porcentaje de varianza explicada de las variables ambientales en la dimensión 1 y 2.](Segundo_avance_files/figure-html/10.png){#fig-Figura10 fig-align="center"}
+
+En la @fig-Figura10 ...
+
+# [Escalamiento multidimencional no metrico (NMDS)]{style="color: #045a8d;"}
+
+![Escalamiento multidimencional no métrico para los taxones de microalgas en los tres tributarios.](Segundo_avance_files/figure-html/11.png){#fig-Figura11 fig-align="center"}
+
+En la @fig-Figura11 ...
+
+# [Análisis Clúster - CLA]{style="color: #045a8d;"}
+
+![Niveles de fusión.](Segundo_avance_files/figure-html/12.png){#fig-Figura12 fig-align="center"}
+
+En la @fig-Figura12 ...
+
+![Figura de silueta.](Segundo_avance_files/figure-html/13.png){#fig-Figura13 fig-align="center"}
+
+En la @fig-Figura13 ...
+
+![Dendograma jerárquico final con los dos grupos asignados.](Segundo_avance_files/figure-html/14.png){#fig-Figura14 fig-align="center"}
+
+En la @fig-Figura14 ...
+
+![Dendograma no jerárquico final.](Segundo_avance_files/figure-html/15.png){#fig-Figura15 fig-align="center"}
+
+En la @fig-Figura15 ...
+
+![Mapa de calor que define en color rojo a las variables de mayor aporte a la clasificación realizada.](Segundo_avance_files/figure-html/16.png){#fig-Figura16 fig-align="center"}
+
+En la @fig-Figura16 ...
+
+```{=html}
+<style> 
+body { text-align: justify} 
+</style>
+```

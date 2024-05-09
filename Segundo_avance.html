@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" xml:lang="es-ES"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Manuel L. Eestupiñan-Owen">
+<meta name="description" content="Se presenta intoduccion, objetivos e ipotesis para contextualizar la base de datos seguido de la exploracion graica y las tecnicas de ordenacion PCA y NMDS.">
+
+<title>Densidad de Microalgas Periféricas en Tributarios del Rio Gaira, Santa Marta, Colombia.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Segundo_avance_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Segundo_avance_files/libs/quarto-html/quarto.js"></script>
+<script src="Segundo_avance_files/libs/quarto-html/popper.min.js"></script>
+<script src="Segundo_avance_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Segundo_avance_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Segundo_avance_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Segundo_avance_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Segundo_avance_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Segundo_avance_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Segundo_avance_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #a6bddb;
+      }
+</style>
+
+<script src="Segundo_avance_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="Segundo_avance_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title">Densidad de Microalgas Periféricas en Tributarios del Rio Gaira, Santa Marta, Colombia.</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+            <p class="subtitle lead">Segundo avance del estudio de caso.</p>
+                  <div>
+        <div class="description">
+          Se presenta intoduccion, objetivos e ipotesis para contextualizar la base de datos seguido de la exploracion graica y las tecnicas de ordenacion PCA y NMDS.
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Autor/a</div>
+      <div class="quarto-title-meta-contents">
+               <p>Manuel L. Eestupiñan-Owen </p>
+            </div>
+    </div>
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenido</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span style="color: #045a8d;">Introducción</span></a></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos"><span style="color: #045a8d;">Objetivos</span></a>
+  <ul class="collapse">
+  <li><a href="#objetivo-general" id="toc-objetivo-general" class="nav-link" data-scroll-target="#objetivo-general"><span style="color: #3690c0;">Objetivo general</span></a></li>
+  <li><a href="#objetivos-específicos" id="toc-objetivos-específicos" class="nav-link" data-scroll-target="#objetivos-específicos"><span style="color: #3690c0;">Objetivos específicos</span></a></li>
+  </ul></li>
+  <li><a href="#pregunta-de-análisis" id="toc-pregunta-de-análisis" class="nav-link" data-scroll-target="#pregunta-de-análisis"><span style="color: #045a8d;">Pregunta de análisis</span></a></li>
+  <li><a href="#hipótesis" id="toc-hipótesis" class="nav-link" data-scroll-target="#hipótesis"><span style="color: #045a8d;">Hipótesis</span></a></li>
+  <li><a href="#base-de-datos" id="toc-base-de-datos" class="nav-link" data-scroll-target="#base-de-datos"><span style="color: #045a8d;">Base de datos</span></a>
+  <ul class="collapse">
+  <li><a href="#variables-trasformadas" id="toc-variables-trasformadas" class="nav-link" data-scroll-target="#variables-trasformadas"><span style="color: #3690c0;">Variables trasformadas</span></a></li>
+  </ul></li>
+  <li><a href="#exploracion-grafica" id="toc-exploracion-grafica" class="nav-link" data-scroll-target="#exploracion-grafica"><span style="color: #045a8d;">Exploracion grafica</span></a>
+  <ul class="collapse">
+  <li><a href="#figura-de-elipces" id="toc-figura-de-elipces" class="nav-link" data-scroll-target="#figura-de-elipces"><span style="color: #3690c0;">Figura de elipces</span></a></li>
+  <li><a href="#figuras-de-elipces-con-variables-transformadas" id="toc-figuras-de-elipces-con-variables-transformadas" class="nav-link" data-scroll-target="#figuras-de-elipces-con-variables-transformadas"><span style="color: #3690c0;">Figuras de elipces con variables transformadas</span></a></li>
+  <li><a href="#figura-de-cajas" id="toc-figura-de-cajas" class="nav-link" data-scroll-target="#figura-de-cajas"><span style="color: #3690c0;">Figura de cajas</span></a></li>
+  </ul></li>
+  <li><a href="#análisis-de-componentes-principales-pca" id="toc-análisis-de-componentes-principales-pca" class="nav-link" data-scroll-target="#análisis-de-componentes-principales-pca"><span style="color: #045a8d;">Análisis de Componentes Principales (PCA)</span></a>
+  <ul class="collapse">
+  <li><a href="#figura-del-pca" id="toc-figura-del-pca" class="nav-link" data-scroll-target="#figura-del-pca"><span style="color: #3690c0;">Figura del PCA</span></a></li>
+  </ul></li>
+  <li><a href="#escalamiento-multidimencional-no-metrico-nmds" id="toc-escalamiento-multidimencional-no-metrico-nmds" class="nav-link" data-scroll-target="#escalamiento-multidimencional-no-metrico-nmds"><span style="color: #045a8d;">Escalamiento multidimencional no metrico (NMDS)</span></a></li>
+  <li><a href="#análisis-clúster---cla" id="toc-análisis-clúster---cla" class="nav-link" data-scroll-target="#análisis-clúster---cla"><span style="color: #045a8d;">Análisis Clúster - CLA</span></a></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Microscopia%20electronica%20de%20barrido_microalgas.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Tomado de: Cita. Microscopía Electrónica de Barrido: A, B: <strong><em>Cocconeis placentula</em></strong>, C, D: <strong><em>Planothidium lanceolatum</em></strong>, E: <strong><em>Navicula sp.</em></strong>, F: <strong><em>Amphora sp.</em></strong>, G: <strong><em>Surirella Susanae</em></strong>, H: <strong><em>Melosira varians</em></strong>.</figcaption>
+</figure>
+</div>
+<section id="introducción" class="level1">
+<h1><span style="color: #045a8d;">Introducción</span></h1>
+<p>PENDIENTE</p>
+</section>
+<section id="objetivos" class="level1">
+<h1><span style="color: #045a8d;">Objetivos</span></h1>
+<section id="objetivo-general" class="level3">
+<h3 class="anchored" data-anchor-id="objetivo-general"><span style="color: #3690c0;">Objetivo general</span></h3>
+<p>Analizar la diferencia en la densidad y la composición de las microalgas periféricas con diferentes niveles fisicoquímicos en tres tributarios del sector medio del rio Gaira SNSM.</p>
+</section>
+<section id="objetivos-específicos" class="level3">
+<h3 class="anchored" data-anchor-id="objetivos-específicos"><span style="color: #3690c0;">Objetivos específicos</span></h3>
+<ol type="1">
+<li>Determinar la relación entre los parámetros fisicoquímicos y la densidad de los taxones Microalgas Perifíticas en tres Tributarios de la cuenca media del Rio Gaira.</li>
+<li>Determinar la relación de la densidad entre taxones de Microalgas Perifitícas en tres Tributarios de la cuenca media del Rio Gaira.</li>
+<li>Determinar las variaciones de la densidad de microalgas y los factores fisicoquímicos de en cada uno de los tributarios del Rio Gaira, SNSM, Colombia.</li>
+</ol>
+</section>
+</section>
+<section id="pregunta-de-análisis" class="level1">
+<h1><span style="color: #045a8d;">Pregunta de análisis</span></h1>
+<p>¿Cuál es la variación en la densidad y la composición de las microalgas perifiticas con diferentes niveles fisicoquímicos en tres tributarios del sector medio del rio Gaira SNSM??&nbsp;</p>
+</section>
+<section id="hipótesis" class="level1">
+<h1><span style="color: #045a8d;">Hipótesis</span></h1>
+<p><strong>H0:</strong> No existe diferencia en la densidad y la composición de microalgas perifíticas con diferentes niveles fisicoquímicos en los tres Tributarios de la cuenca media del Rio Gaira.</p>
+<p><strong>Ha:</strong> Existe diferencia en la densidad y la composición de microalgas perifíticas con diferentes niveles fisicoquímicos en los tres Tributarios de la cuenca media del Rio Gaira.</p>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggsci)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(concaveman)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="base-de-datos" class="level1">
+<h1><span style="color: #045a8d;">Base de datos</span></h1>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>microalgas <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"microalgas.xlsx"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="variables-trasformadas" class="level2">
+<h2 class="anchored" data-anchor-id="variables-trasformadas"><span style="color: #3690c0;">Variables trasformadas</span></h2>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables ambientales</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>amb <span class="ot">=</span> <span class="fu">log10</span>(microalgas[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>)]<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables biologicas transformados con Hellinger</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>bio <span class="ot">=</span> <span class="fu">decostand</span>(microalgas[,<span class="fu">c</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">19</span>)],<span class="st">"hellinger"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="exploracion-grafica" class="level1">
+<h1><span style="color: #045a8d;">Exploracion grafica</span></h1>
+<div class="cell">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(microalgas) <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">booktabs =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F, <span class="at">html_font =</span> <span class="st">"Cambria"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="lightable-classic table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Grupos</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Amonio</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Nitrito</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Nitrato</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Oxigeno</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">pH</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Luz</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Temp</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Den</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Achnanthes</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Amphora</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Caloneis</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Chamaepinnularia</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Cocconeis</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Eolimna</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Girosigma</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Gomphonema</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Surirella</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Lyngbya</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">VIC</td>
+<td style="text-align: right;">0.301</td>
+<td style="text-align: right;">0.838</td>
+<td style="text-align: right;">0.901</td>
+<td style="text-align: right;">7.68</td>
+<td style="text-align: right;">8.10</td>
+<td style="text-align: right;">800</td>
+<td style="text-align: right;">17.6</td>
+<td style="text-align: right;">34.334</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">1.333</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.667</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">4.667</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.667</td>
+<td style="text-align: right;">24.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VIC</td>
+<td style="text-align: right;">0.301</td>
+<td style="text-align: right;">0.779</td>
+<td style="text-align: right;">0.830</td>
+<td style="text-align: right;">6.54</td>
+<td style="text-align: right;">7.45</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: right;">18.3</td>
+<td style="text-align: right;">32.999</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.333</td>
+<td style="text-align: right;">6.333</td>
+<td style="text-align: right;">8.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">17.333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VIC</td>
+<td style="text-align: right;">1.107</td>
+<td style="text-align: right;">1.176</td>
+<td style="text-align: right;">3.430</td>
+<td style="text-align: right;">5.62</td>
+<td style="text-align: right;">7.81</td>
+<td style="text-align: right;">300</td>
+<td style="text-align: right;">17.1</td>
+<td style="text-align: right;">22.667</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">3.333</td>
+<td style="text-align: right;">8.667</td>
+<td style="text-align: right;">8.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.667</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">2.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VIC</td>
+<td style="text-align: right;">1.024</td>
+<td style="text-align: right;">0.882</td>
+<td style="text-align: right;">2.670</td>
+<td style="text-align: right;">6.08</td>
+<td style="text-align: right;">9.21</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">18.6</td>
+<td style="text-align: right;">41.000</td>
+<td style="text-align: right;">0.333</td>
+<td style="text-align: right;">0.667</td>
+<td style="text-align: right;">2.333</td>
+<td style="text-align: right;">6.333</td>
+<td style="text-align: right;">10.000</td>
+<td style="text-align: right;">8.000</td>
+<td style="text-align: right;">2.667</td>
+<td style="text-align: right;">3.667</td>
+<td style="text-align: right;">1.667</td>
+<td style="text-align: right;">5.333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VIC</td>
+<td style="text-align: right;">0.194</td>
+<td style="text-align: right;">0.147</td>
+<td style="text-align: right;">0.524</td>
+<td style="text-align: right;">5.10</td>
+<td style="text-align: right;">9.24</td>
+<td style="text-align: right;">800</td>
+<td style="text-align: right;">17.9</td>
+<td style="text-align: right;">131.334</td>
+<td style="text-align: right;">1.667</td>
+<td style="text-align: right;">3.000</td>
+<td style="text-align: right;">4.000</td>
+<td style="text-align: right;">13.333</td>
+<td style="text-align: right;">52.667</td>
+<td style="text-align: right;">23.333</td>
+<td style="text-align: right;">6.667</td>
+<td style="text-align: right;">11.000</td>
+<td style="text-align: right;">10.000</td>
+<td style="text-align: right;">5.667</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VIC</td>
+<td style="text-align: right;">0.206</td>
+<td style="text-align: right;">0.471</td>
+<td style="text-align: right;">0.895</td>
+<td style="text-align: right;">5.60</td>
+<td style="text-align: right;">9.63</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">17.8</td>
+<td style="text-align: right;">130.000</td>
+<td style="text-align: right;">2.000</td>
+<td style="text-align: right;">3.333</td>
+<td style="text-align: right;">9.333</td>
+<td style="text-align: right;">9.667</td>
+<td style="text-align: right;">52.333</td>
+<td style="text-align: right;">20.667</td>
+<td style="text-align: right;">4.333</td>
+<td style="text-align: right;">9.667</td>
+<td style="text-align: right;">9.667</td>
+<td style="text-align: right;">9.000</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<section id="figura-de-elipces" class="level2">
+<h2 class="anchored" data-anchor-id="figura-de-elipces"><span style="color: #3690c0;">Figura de elipces</span></h2>
+<div id="fig-Figura1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Exploratorios_microalgas_files/figure-html/fig-fig1-1.png" class="img-fluid figure-img" width="700"></p>
+<figcaption class="figure-caption">Figura&nbsp;1: Relación entre las variables ambientales y los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira. Las elipse con azul intenso representan las relaciones lineales positivas y las de color rojo intenso, corresponden a las relaciones lineales negativas o inversas entre las parejas de variables.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura1">Figura&nbsp;1</a> se observan algunas relaciones lineales fuertes entre taxones como es el caso de <strong><em>Surirella</em></strong> con <strong><em>Girosigma</em></strong> y <strong><em>Gomphonema</em></strong>. Las relaciones màs fuertes se estan dando entre parejas de taxones. Sin embargo en general no se presentan muchas relaciones lineales fuertes tanto positivas como negativas.</p>
+</section>
+<section id="figuras-de-elipces-con-variables-transformadas" class="level2">
+<h2 class="anchored" data-anchor-id="figuras-de-elipces-con-variables-transformadas"><span style="color: #3690c0;">Figuras de elipces con variables transformadas</span></h2>
+<div id="fig-Figura2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Exploratorios_microalgas_files/figure-html/fig-fig2-1.png" class="img-fluid figure-img" width="700"></p>
+<figcaption class="figure-caption">Figura&nbsp;2: Relación entre los taxones VS los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura2">Figura&nbsp;2</a> se observan unicamente relaciones lineales positivas entre parejas de taxones y se descartan las relaciones más bajas. En general todas las relaciones son batante fuertes las más significativas estan dadas entre <strong><em>Calonesis</em></strong> con <strong><em>Girosigma</em></strong> y <strong><em>Chamaepinnularia</em></strong> con <strong><em>Eolimna.</em></strong> Se observaque en mayor o menor proporcion la presencia de los diferentes taxones se encuentra favoreciendo a los demás taxones.</p>
+<p>Figura 3. Ambientales y biologicas VS Ambientales y biologicas transformadas con Hellinger.</p>
+<div id="fig-Figura3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Exploratorios_microalgas_files/figure-html/fig-fig3-1.png" class="img-fluid figure-img" width="700"></p>
+<figcaption class="figure-caption">Figura&nbsp;3: Relación entre las variables ambientales VS los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura3">Figura&nbsp;3</a> se observan muy pocas relaciones significativas entre las variables fisicoquimicas y los taxones. Se encuentran algunas relaciones negativas entre la Luz y <strong><em>Surirella</em></strong>, <strong><em>Lyngbya</em></strong>, <strong><em>Eolimna</em></strong> y <strong><em>Gomphonema</em></strong>. En cuanto a las demás parejas de variables se aprecian algunas relaciones positivas con la temperatura y el pH, siendo la relacion entre la temperatura y <strong><em>Surirella</em></strong> la más fuerte.</p>
+</section>
+<section id="figura-de-cajas" class="level2">
+<h2 class="anchored" data-anchor-id="figura-de-cajas"><span style="color: #3690c0;">Figura de cajas</span></h2>
+<div id="fig-Figura4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Exploratorios_microalgas_files/figure-html/fig-fig4-1.png" class="img-fluid figure-img" width="700"></p>
+<figcaption class="figure-caption">Figura&nbsp;4: Variación en la densidad de microalgas para los tres tributarios de la cuenca media del Rio Gaira.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura4">Figura&nbsp;4</a> se puede observar que las cajas se encuentran solapadas y las medianas de los tres tributarios son practicamente iguales, además existe unan alta dispersion de los datos, lo que indica que no existe una verdadera diferenciacion en la densidad de microalgas entre cada tributario evaluado.</p>
+<div id="fig-Figura5" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Exploratorios_microalgas_files/figure-html/fig-fig5-1.png" class="img-fluid figure-img" width="700"></p>
+<figcaption class="figure-caption">Figura&nbsp;5: Variación entre la densidad de los diferentes taxones de microalgas perifiticas para los tres tributarios de la cuenca media del Rio Gaira.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura5">Figura&nbsp;5</a> se observa que en general para la mayoria de los taxones no existe una diferencia en la densidad total de microalgas por cada tributario, las medias de los tres tributarios son similares y los intervalos de confianza se encuentran solapados. Para el taxon <strong><em>Achnanthes</em></strong> se puede observar que en tributario Jabali los datos de densidad se alejan de la tendencia anteriormente mencionada y en otros taxones como <strong><em>Girosigma</em></strong> y <strong><em>Suriella</em></strong> los valores de densidad presentan una dispercion mucho mayor en el tributario La Victoria.</p>
+<div id="fig-Figura6" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Exploratorios_microalgas_files/figure-html/fig-fig6-1.png" class="img-fluid figure-img" width="700"></p>
+<figcaption class="figure-caption">Figura&nbsp;6: Distribucion de frecuencia de los factores fisicoquimicos en cada uno de los tres tributarios evaluados.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura6">Figura&nbsp;6</a> se observa que para todas las variables ambientales los valores de la media son muy similares o incluso iguales en algunos casos para cada uno de los trubutarios, mientras que el rango de los datos varia mucho más entre tributarios para algunas variables como el Nitrito. Sin enbargo para todos los fisicoquimicos exepto el Oxigeno existe la precencia de outliers los cuales pueden causar sesgos en parametros como la media, distarcionar considerablemente el analisis grafico alterando las escalas lo que puede ocacionar que los datos parescan más dipersos de lo que en verdad son. Todo esto puede ocultar patrones importantes llevando a conclusiones sesgadas.</p>
+</section>
+</section>
+<section id="análisis-de-componentes-principales-pca" class="level1">
+<h1><span style="color: #045a8d;">Análisis de Componentes Principales (PCA)</span></h1>
+<div id="fig-Figura7" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Segundo_avance_files/figure-html/7.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura&nbsp;7: Contribución de cada componente.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura7">Figura&nbsp;7</a> se obserba que el primer componente recoge una varianza del 46.6% mientras que el segundo componente recoge un 15.% de la varianza.</p>
+<div id="fig-Figura8" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Segundo_avance_files/figure-html/9.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura&nbsp;8: Contribución de variables en componente 1.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura8">Figura&nbsp;8</a> se obserba que Lyngbya es el taxon de mayor aporte en el primer componente.</p>
+<div id="fig-Figura9" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Segundo_avance_files/figure-html/8.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura&nbsp;9: Contribución de variables en componente 2.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura9">Figura&nbsp;9</a> se obserba que Amphora Eolimna Caloneis Cocconeis Gomphonema son los taxones de mayor aporte en el segundo componente.</p>
+<section id="figura-del-pca" class="level3">
+<h3 class="anchored" data-anchor-id="figura-del-pca"><span style="color: #3690c0;">Figura del PCA</span></h3>
+<div id="fig-Figura10" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Segundo_avance_files/figure-html/10.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura&nbsp;10: Análisis de componentes principales (PCA). A la izquierda se presenta el biplot de las componentes principales por Tributario (elipses). Los vectores representan los taxones y los puntos las variables ambientales. A la derecha se observan el porcentaje de varianza explicada de las variables ambientales en la dimensión 1 y 2.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura10">Figura&nbsp;10</a> …</p>
+</section>
+</section>
+<section id="escalamiento-multidimencional-no-metrico-nmds" class="level1">
+<h1><span style="color: #045a8d;">Escalamiento multidimencional no metrico (NMDS)</span></h1>
+<div id="fig-Figura11" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Segundo_avance_files/figure-html/11.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura&nbsp;11: Escalamiento multidimencional no métrico para los taxones de microalgas en los tres tributarios.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura11">Figura&nbsp;11</a> …</p>
+</section>
+<section id="análisis-clúster---cla" class="level1">
+<h1><span style="color: #045a8d;">Análisis Clúster - CLA</span></h1>
+<div id="fig-Figura12" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Segundo_avance_files/figure-html/12.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura&nbsp;12: Niveles de fusión.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura12">Figura&nbsp;12</a> …</p>
+<div id="fig-Figura13" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Segundo_avance_files/figure-html/13.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura&nbsp;13: Figura de silueta.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura13">Figura&nbsp;13</a> …</p>
+<div id="fig-Figura14" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Segundo_avance_files/figure-html/14.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura&nbsp;14: Dendograma jerárquico final con los dos grupos asignados.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura14">Figura&nbsp;14</a> …</p>
+<div id="fig-Figura15" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Segundo_avance_files/figure-html/15.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura&nbsp;15: Dendograma no jerárquico final.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura15">Figura&nbsp;15</a> …</p>
+<div id="fig-Figura16" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Segundo_avance_files/figure-html/16.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figura&nbsp;16: Mapa de calor que define en color rojo a las variables de mayor aporte a la clasificación realizada.</figcaption>
+</figure>
+</div>
+<p>En la <a href="#fig-Figura16">Figura&nbsp;16</a> …</p>
+<style> 
+body { text-align: justify} 
+</style>
+<!-- -->
+
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Densidad de Microalgas Periféricas en Tributarios del Rio Gaira, Santa Marta, Colombia."</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Segundo avance del estudio de caso."</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Se presenta intoduccion, objetivos e ipotesis para contextualizar la base de datos seguido de la exploracion graica y las tecnicas de ordenacion PCA y NMDS."</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Manuel L. Eestupiñan-Owen"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> "#a6bddb"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> "es-ES"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: True</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: Tabla de contenido</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: Spacelab</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> apa (1).csl</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="an">source:</span><span class="co"> </span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">  quarto-pub:</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="al">![Tomado de: Cita. Microscopía Electrónica de Barrido: A, B: ***Cocconeis placentula***, C, D: ***Planothidium lanceolatum***, E: ***Navicula sp.***, F: ***Amphora sp.***, G: ***Surirella Susanae***, H: ***Melosira varians***.](Microscopia%20electronica%20de%20barrido_microalgas.png)</span>{fig-align="center"}</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="fu"># [Introducción]{style="color: #045a8d;"}</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>PENDIENTE</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu"># [Objetivos]{style="color: #045a8d;"}</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="fu">### [Objetivo general]{style="color: #3690c0;"}</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>Analizar la diferencia en la densidad y la composición de las microalgas periféricas con diferentes niveles fisicoquímicos en tres tributarios del sector medio del rio Gaira SNSM.</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="fu">### [Objetivos específicos]{style="color: #3690c0;"}</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Determinar la relación entre los parámetros fisicoquímicos y la densidad de los taxones Microalgas Perifíticas en tres Tributarios de la cuenca media del Rio Gaira.</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Determinar la relación de la densidad entre taxones de Microalgas Perifitícas en tres Tributarios de la cuenca media del Rio Gaira.</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Determinar las variaciones de la densidad de microalgas y los factores fisicoquímicos de en cada uno de los tributarios del Rio Gaira, SNSM, Colombia.</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="fu"># [Pregunta de análisis]{style="color: #045a8d;"}</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>¿Cuál es la variación en la densidad y la composición de las microalgas perifiticas con diferentes niveles fisicoquímicos en tres tributarios del sector medio del rio Gaira SNSM??&nbsp;</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="fu"># [Hipótesis]{style="color: #045a8d;"}</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>**H0:** No existe diferencia en la densidad y la composición de microalgas perifíticas con diferentes niveles fisicoquímicos en los tres Tributarios de la cuenca media del Rio Gaira.</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>**Ha:** Existe diferencia en la densidad y la composición de microalgas perifíticas con diferentes niveles fisicoquímicos en los tres Tributarios de la cuenca media del Rio Gaira.</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{r,warning=FALSE,message=FALSE}</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggsci)</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggforce)</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(concaveman)</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="fu"># [Base de datos]{style="color: #045a8d;"}</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{r,warning=FALSE,message=FALSE}</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>microalgas <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"microalgas.xlsx"</span>)</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## [Variables trasformadas]{style="color: #3690c0;"}</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning=FALSE,message=FALSE}</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables ambientales</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>amb <span class="ot">=</span> <span class="fu">log10</span>(microalgas[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>)]<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables biologicas transformados con Hellinger</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>bio <span class="ot">=</span> <span class="fu">decostand</span>(microalgas[,<span class="fu">c</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">19</span>)],<span class="st">"hellinger"</span>)</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="fu"># [Exploracion grafica]{style="color: #045a8d;"}</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(microalgas) <span class="sc">%&gt;%</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">booktabs =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F, <span class="at">html_font =</span> <span class="st">"Cambria"</span>)</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="fu">## [Figura de elipces]{style="color: #3690c0;"}</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="al">![Relación entre las variables ambientales y los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira. Las elipse con azul intenso representan las relaciones lineales positivas y las de color rojo intenso, corresponden a las relaciones lineales negativas o inversas entre las parejas de variables.](Exploratorios_microalgas_files/figure-html/fig-fig1-1.png)</span>{#fig-Figura1 fig-align="center" width="700"}</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura1 se observan algunas relaciones lineales fuertes entre taxones como es el caso de ***Surirella*** con ***Girosigma*** y ***Gomphonema***. Las relaciones màs fuertes se estan dando entre parejas de taxones. Sin embargo en general no se presentan muchas relaciones lineales fuertes tanto positivas como negativas.</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## [Figuras de elipces con variables transformadas]{style="color: #3690c0;"}</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="al">![Relación entre los taxones VS los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira.](Exploratorios_microalgas_files/figure-html/fig-fig2-1.png)</span>{#fig-Figura2 fig-align="center" width="700"}</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura2 se observan unicamente relaciones lineales positivas entre parejas de taxones y se descartan las relaciones más bajas. En general todas las relaciones son batante fuertes las más significativas estan dadas entre ***Calonesis*** con ***Girosigma*** y ***Chamaepinnularia*** con ***Eolimna.*** Se observaque en mayor o menor proporcion la presencia de los diferentes taxones se encuentra favoreciendo a los demás taxones.</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>Figura 3. Ambientales y biologicas VS Ambientales y biologicas transformadas con Hellinger.</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="al">![Relación entre las variables ambientales VS los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira.](Exploratorios_microalgas_files/figure-html/fig-fig3-1.png)</span>{#fig-Figura3 fig-align="center" width="700"}</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura3 se observan muy pocas relaciones significativas entre las variables fisicoquimicas y los taxones. Se encuentran algunas relaciones negativas entre la Luz y ***Surirella***, ***Lyngbya***, ***Eolimna*** y ***Gomphonema***. En cuanto a las demás parejas de variables se aprecian algunas relaciones positivas con la temperatura y el pH, siendo la relacion entre la temperatura y ***Surirella*** la más fuerte.</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="fu">## [Figura de cajas]{style="color: #3690c0;"}</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="al">![Variación en la densidad de microalgas para los tres tributarios de la cuenca media del Rio Gaira.](Exploratorios_microalgas_files/figure-html/fig-fig4-1.png)</span>{#fig-Figura4 fig-align="center" width="700"}</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura4 se puede observar que las cajas se encuentran solapadas y las medianas de los tres tributarios son practicamente iguales, además existe unan alta dispersion de los datos, lo que indica que no existe una verdadera diferenciacion en la densidad de microalgas entre cada tributario evaluado.</span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a><span class="al">![Variación entre la densidad de los diferentes taxones de microalgas perifiticas para los tres tributarios de la cuenca media del Rio Gaira.](Exploratorios_microalgas_files/figure-html/fig-fig5-1.png)</span>{#fig-Figura5 fig-align="center" width="700"}</span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura5 se observa que en general para la mayoria de los taxones no existe una diferencia en la densidad total de microalgas por cada tributario, las medias de los tres tributarios son similares y los intervalos de confianza se encuentran solapados. Para el taxon ***Achnanthes*** se puede observar que en tributario Jabali los datos de densidad se alejan de la tendencia anteriormente mencionada y en otros taxones como ***Girosigma*** y ***Suriella*** los valores de densidad presentan una dispercion mucho mayor en el tributario La Victoria.</span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a><span class="al">![Distribucion de frecuencia de los factores fisicoquimicos en cada uno de los tres tributarios evaluados.](Exploratorios_microalgas_files/figure-html/fig-fig6-1.png)</span>{#fig-Figura6 fig-align="center" width="700"}</span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura6 se observa que para todas las variables ambientales los valores de la media son muy similares o incluso iguales en algunos casos para cada uno de los trubutarios, mientras que el rango de los datos varia mucho más entre tributarios para algunas variables como el Nitrito. Sin enbargo para todos los fisicoquimicos exepto el Oxigeno existe la precencia de outliers los cuales pueden causar sesgos en parametros como la media, distarcionar considerablemente el analisis grafico alterando las escalas lo que puede ocacionar que los datos parescan más dipersos de lo que en verdad son. Todo esto puede ocultar patrones importantes llevando a conclusiones sesgadas.</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="fu"># [Análisis de Componentes Principales (PCA)]{style="color: #045a8d;"}</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="al">![Contribución de cada componente.](Segundo_avance_files/figure-html/7.png)</span>{#fig-Figura7 fig-align="center"}</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura7 se obserba que el primer componente recoge una varianza del 46.6% mientras que el segundo componente recoge un 15.% de la varianza.</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="al">![Contribución de variables en componente 1.](Segundo_avance_files/figure-html/9.png)</span>{#fig-Figura8 fig-align="center"}</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura8 se obserba que Lyngbya es el taxon de mayor aporte en el primer componente.</span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a><span class="al">![Contribución de variables en componente 2.](Segundo_avance_files/figure-html/8.png)</span>{#fig-Figura9 fig-align="center"}</span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura9 se obserba que Amphora Eolimna Caloneis Cocconeis Gomphonema son los taxones de mayor aporte en el segundo componente.</span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a><span class="fu">### [Figura del PCA]{style="color: #3690c0;"}</span></span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="al">![Análisis de componentes principales (PCA). A la izquierda se presenta el biplot de las componentes principales por Tributario (elipses). Los vectores representan los taxones y los puntos las variables ambientales. A la derecha se observan el porcentaje de varianza explicada de las variables ambientales en la dimensión 1 y 2.](Segundo_avance_files/figure-html/10.png)</span>{#fig-Figura10 fig-align="center"}</span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura10 ...</span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a><span class="fu"># [Escalamiento multidimencional no metrico (NMDS)]{style="color: #045a8d;"}</span></span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a><span class="al">![Escalamiento multidimencional no métrico para los taxones de microalgas en los tres tributarios.](Segundo_avance_files/figure-html/11.png)</span>{#fig-Figura11 fig-align="center"}</span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura11 ...</span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="fu"># [Análisis Clúster - CLA]{style="color: #045a8d;"}</span></span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="al">![Niveles de fusión.](Segundo_avance_files/figure-html/12.png)</span>{#fig-Figura12 fig-align="center"}</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura12 ...</span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a><span class="al">![Figura de silueta.](Segundo_avance_files/figure-html/13.png)</span>{#fig-Figura13 fig-align="center"}</span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura13 ...</span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a><span class="al">![Dendograma jerárquico final con los dos grupos asignados.](Segundo_avance_files/figure-html/14.png)</span>{#fig-Figura14 fig-align="center"}</span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura14 ...</span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="al">![Dendograma no jerárquico final.](Segundo_avance_files/figure-html/15.png)</span>{#fig-Figura15 fig-align="center"}</span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura15 ...</span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a><span class="al">![Mapa de calor que define en color rojo a las variables de mayor aporte a la clasificación realizada.](Segundo_avance_files/figure-html/16.png)</span>{#fig-Figura16 fig-align="center"}</span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>En la @fig-Figura16 ...</span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;style&gt; </span></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a><span class="in">body { text-align: justify} </span></span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/style&gt;</span></span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
