@@ -89,33 +89,33 @@ head(microalgas) %>%
 
 ## [Figura de elipces]{style="color: #3690c0;"}
 
-![Relación entre las variables ambientales y los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira. Las elipse con azul intenso representan las relaciones lineales positivas y las de color rojo intenso, corresponden a las relaciones lineales negativas o inversas entre las parejas de variables.](Exploratorios_microalgas_files/figure-html/fig-fig1-1.png){#fig-Figura1 fig-align="center" width="700"}
+![Relación entre las variables ambientales y los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira. Las elipse con azul intenso representan las relaciones lineales positivas y las de color rojo intenso, corresponden a las relaciones lineales negativas o inversas entre las parejas de variables.](Segundo_avance_files/figure-html/1.png){#fig-Figura1 fig-align="center"}
 
 En la @fig-Figura1 se observan algunas relaciones lineales fuertes entre taxones como es el caso de ***Surirella*** con ***Girosigma*** y ***Gomphonema***. Las relaciones màs fuertes se estan dando entre parejas de taxones. Sin embargo en general no se presentan muchas relaciones lineales fuertes tanto positivas como negativas.
 
 ## [Figuras de elipces con variables transformadas]{style="color: #3690c0;"}
 
-![Relación entre los taxones VS los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira.](Exploratorios_microalgas_files/figure-html/fig-fig2-1.png){#fig-Figura2 fig-align="center" width="700"}
+![Relación entre los taxones VS los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira.](Segundo_avance_files/figure-html/2.png){#fig-Figura2 fig-align="center"}
 
 En la @fig-Figura2 se observan unicamente relaciones lineales positivas entre parejas de taxones y se descartan las relaciones más bajas. En general todas las relaciones son batante fuertes las más significativas estan dadas entre ***Calonesis*** con ***Girosigma*** y ***Chamaepinnularia*** con ***Eolimna.*** Se observaque en mayor o menor proporcion la presencia de los diferentes taxones se encuentra favoreciendo a los demás taxones.
 
 Figura 3. Ambientales y biologicas VS Ambientales y biologicas transformadas con Hellinger.
 
-![Relación entre las variables ambientales VS los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira.](Exploratorios_microalgas_files/figure-html/fig-fig3-1.png){#fig-Figura3 fig-align="center" width="700"}
+![Relación entre las variables ambientales VS los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira.](Segundo_avance_files/figure-html/3.png){#fig-Figura3 fig-align="center"}
 
 En la @fig-Figura3 se observan muy pocas relaciones significativas entre las variables fisicoquimicas y los taxones. Se encuentran algunas relaciones negativas entre la Luz y ***Surirella***, ***Lyngbya***, ***Eolimna*** y ***Gomphonema***. En cuanto a las demás parejas de variables se aprecian algunas relaciones positivas con la temperatura y el pH, siendo la relacion entre la temperatura y ***Surirella*** la más fuerte.
 
 ## [Figura de cajas]{style="color: #3690c0;"}
 
-![Variación en la densidad de microalgas para los tres tributarios de la cuenca media del Rio Gaira.](Exploratorios_microalgas_files/figure-html/fig-fig4-1.png){#fig-Figura4 fig-align="center" width="700"}
+![Variación en la densidad de microalgas para los tres tributarios de la cuenca media del Rio Gaira.](Segundo_avance_files/figure-html/4.png){#fig-Figura4 fig-align="center"}
 
 En la @fig-Figura4 se puede observar que las cajas se encuentran solapadas y las medianas de los tres tributarios son practicamente iguales, además existe unan alta dispersion de los datos, lo que indica que no existe una verdadera diferenciacion en la densidad de microalgas entre cada tributario evaluado.
 
-![Variación entre la densidad de los diferentes taxones de microalgas perifiticas para los tres tributarios de la cuenca media del Rio Gaira.](Exploratorios_microalgas_files/figure-html/fig-fig5-1.png){#fig-Figura5 fig-align="center" width="700"}
+![Variación entre la densidad de los diferentes taxones de microalgas perifiticas para los tres tributarios de la cuenca media del Rio Gaira.](Segundo_avance_files/figure-html/5.png){#fig-Figura5 fig-align="center"}
 
 En la @fig-Figura5 se observa que en general para la mayoria de los taxones no existe una diferencia en la densidad total de microalgas por cada tributario, las medias de los tres tributarios son similares y los intervalos de confianza se encuentran solapados. Para el taxon ***Achnanthes*** se puede observar que en tributario Jabali los datos de densidad se alejan de la tendencia anteriormente mencionada y en otros taxones como ***Girosigma*** y ***Suriella*** los valores de densidad presentan una dispercion mucho mayor en el tributario La Victoria.
 
-![Distribucion de frecuencia de los factores fisicoquimicos en cada uno de los tres tributarios evaluados.](Exploratorios_microalgas_files/figure-html/fig-fig6-1.png){#fig-Figura6 fig-align="center" width="700"}
+![Distribucion de frecuencia de los factores fisicoquimicos en cada uno de los tres tributarios evaluados.](Segundo_avance_files/figure-html/6.png){#fig-Figura6 fig-align="center"}
 
 En la @fig-Figura6 se observa que para todas las variables ambientales los valores de la media son muy similares o incluso iguales en algunos casos para cada uno de los trubutarios, mientras que el rango de los datos varia mucho más entre tributarios para algunas variables como el Nitrito. Sin enbargo para todos los fisicoquimicos exepto el Oxigeno existe la precencia de outliers los cuales pueden causar sesgos en parametros como la media, distarcionar considerablemente el analisis grafico alterando las escalas lo que puede ocacionar que los datos parescan más dipersos de lo que en verdad son. Todo esto puede ocultar patrones importantes llevando a conclusiones sesgadas.
 
