@@ -1,0 +1,894 @@
+---
+title: "Densidad de microalgas periféricas en tres tributarios de la cuenca media del río Gaira, Santa Marta, Colombia."
+subtitle: "Segundo avance del estudio de caso."
+description: "Se presenta una introducción, objetivos e hipótesis para contextualizar la base de datos, seguido de la exploración grafica, las técnicas de ordenacion y clasificacion: PCA, NMDS, CLA. En el marco del estudio de caso (Densidad de microalgas periféricas en tres tributarios de la cuenca media del río Gaira, Santa Marta, Colombia) desarrollado en la asignatura: Estadística Multivariada 2024-1. Docente: Javier Rodríguez-Barrios. Programa de Biología/Universidad Del Magdalena."
+title-block-banner: "#3690c0"
+date: 2024-05-29
+theme: Zephyr
+author: 
+  name: "Manuel Estupiñan,Paola Peralta,
+  Yeison Garcia"
+format:
+  html:
+    toc: True
+    toc-title: Tabla de contenido
+    code-tools: true
+    code-fold: true
+    link-external-icon: true
+    link-external-newwindow: true
+editor: visual
+lang: "es-ES"
+bibliography: references.bib
+csl: apa (1).csl
+---
+
+![Tomado de: [@osorio_2015]. Microscopía Electrónica de Barrido: A, B: ***Cocconeis placentula***, C, D: ***Planothidium lanceolatum***, E: ***Navicula sp.***, F: ***Amphora sp.***, G: ***Surirella Susanae***, H: ***Melosira varians***.](Microscopia%20electronica%20de%20barrido_microalgas.png){fig-align="center"}
+
+[Articulo fuente](https://doi.org/10.15446/abc.v20n2.41932)
+
+[Base de datos](https://universidadmag-my.sharepoint.com/:f:/g/personal/manuelestupinanlo_unimagdalena_edu_co/Eko9TbOocCZLp-GN26cESpABZfxEWwlAaWyIRymnXI1ulQ?e=n7HAtX)
+
+# [1. Introducción]{style="color: #045a8d;"}
+
+Los ecosistemás acuáticos son importantes y complejos, esto dado que albergan una alta diversidad en su biota y almacenan agua, una de las moléculas más importantes en el planeta. [@Gordillo_2021]. En estos, se encuentran diferentes comunidades, sin embargo, dentro de ellas, una de las más representativas es el perifiton, el cual es considerado como una comunidad compleja de microrganismos adheridos a un sustrato natural o artificial, orgánico o inorgánico, vivo o muerto [@Wetzel_1983]. El perifiton constituye un componente esencial de las comunidades bióticas acuáticas, en estas desarrollan un rol fundamental en los procesos de transferencia de energía, materia e información a través de las redes tróficas [@Montolla-Aguirre_2013]. Entre los organismos más sobresalientes de dicha comunidad se encuentran las microalgas; las cuales representan formás de vida unicelulares de tamaño variable entre 1 µm y 200 µm; que cumplen un papel esencial como productoras primarias dominantes de gran importancia para la estructura y el funcionamiento de los ecosistemás loticos [@Guerrón-Navarrete_2015]. Esto dado que, son uno de los principales puntos de ingreso de energía; se encargan de la fijación de carbono inorgánico, proporcionan refugio y alimento a diferentes tipos de organismos, y presentan altas tasas de reciclaje de nutrientes, contribuyendo con más del 70 % de la producción de materia orgánica [@Gómez_2009]. En Colombia los estudios se han enfocado en comunidades de diatomeas en zonas andinas y algunas llanuras del rio amazona [@MARTÍNEZ_DONATO_2003]. Con la intención de determinar cómo funcionan los ambientes loticos, dejando un sesgo en información acerca de la distribución, diversidad y distribución de comunidades de fitoperifitas son escasos en ecosistemás loticos tropicales [@osorio_2015].
+
+Dentro de los estudios de composición entre la comunidad de algas perifitas en Colombia se ha encontrado que el grado de contaminación causadas por impactos ganaderos y algunos otros aspectos antrópicos generan un notable cambio en la composición, abundancia relativa, diversidad y distribución, demostrando que estos cambios están explicados por la variación de variables fisicoquímicas como lo son los metales pesados, nutrientes y variables hidrológicas [@JIMENEZ-PEREZ2014]. Según @padilla_2021, en la sierra nevada en el marco del rio Gaira, los factores físicos y ambientales se mantienen pese a la presión antropogénica en distintos puntos del tramo del rio Gaira, ya que las precipitaciones anuales y marcadas en cada estación ayudan a mantener la estructura y funcionalidad de los cuerpos de agua. Además, la estructura general de la composición biológica ha encontrado estrategias que le han ayudado a adaptarse a este tipo de fluctuaciones en el ambiente. En los estudios de calidad de los ambientes loticos en la sierra nevada de Santa Marta hay poca información sobre el rol ecológico de las microalgas, la fluctuación de abundancia y así puede ayudar a usar este grupo biológico como especie clave para determinar que afectado está el tramo medio del rio Gaira por presiones antropogénicas.
+
+# [2. Objetivos]{style="color: #045a8d;"}
+
+## [2.2. Objetivo general]{style="color: #3690c0;"}
+
+Analizar la diferencia en la densidad y la composición de las microalgas perifiticas con diferentes niveles fisicoquímicos en tres tributarios del sector medio del rio Gaira SNSM.
+
+## [2.3. Objetivos específicos]{style="color: #3690c0;"}
+
+1.  Determinar la relación de la densidad entre taxones de Microalgas Perifitícas en tres Tributarios de la cuenca media del Rio Gaira.
+2.  Determinar la relación entre los parámetros fisicoquímicos y la densidad de los taxones Microalgas Perifíticas en tres Tributarios de la cuenca media del Rio Gaira.
+3.  Determinar las variaciones de la densidad de microalgas y los factores fisicoquímicos de en cada uno de los tributarios del Rio Gaira, SNSM, Colombia.
+
+## [2.4. Pregunta de análisis]{style="color: #3690c0;"}
+
+¿Cuál es la variación en la densidad y la composición de las microalgas perifiticas con diferentes niveles fisicoquímicos en tres tributarios del sector medio del rio Gaira SNSM?? 
+
+## [2.5. Hipótesis]{style="color: #3690c0;"}
+
+**H0:** No existe diferencia en la densidad y la composición de microalgas perifíticas con diferentes niveles fisicoquímicos en los tres Tributarios de la cuenca media del Rio Gaira.
+
+**Ha:** Existe diferencia en la densidad y la composición de microalgas perifíticas con diferentes niveles fisicoquímicos en los tres Tributarios de la cuenca media del Rio Gaira.
+
+# [3. Flujograma]{style="color: #045a8d;"}
+
+![](Flujograma.jpeg){fig-align="center"}
+
+```{r, warning=FALSE,message=FALSE }
+# [Librerias]{style="color: #045a8d;"}
+# Librerias requeridas
+
+library(tidyverse)
+library(xtable)       # Importar y exportar
+library(openxlsx)     # exportar "*.xlsx" 
+library(readxl)       # Importar y exportar
+library(lattice)      # No se requiere instalar
+library(ggrepel)      # insertar rótulos a los puntos
+require(SciViews)     # Fig. dispersión con coef. de pearson
+library(ggplot2)      # No se requiere instalar
+library(plotrix)      # Figuras de cajas con múltiples variables
+library(corrplot)     # Figuras de elipses
+library(reshape)      # Figuras de cajas con múltiples variables
+library(dplyr)
+library(kableExtra)
+library(vegan)
+library(psych)
+library(reshape2)
+library(factoextra)
+library(ggsci)
+library(ggforce)
+library(concaveman)
+library(FactoMineR)
+library(ade4)
+library(car)
+library(MASS)
+library(candisc)
+library(mvnormtest)
+```
+
+# [4. Base de datos]{style="color: #045a8d;"}
+
+```{r, warning=FALSE,message=FALSE }
+#| label: tbl-tbl1
+#| tbl-cap: Base de datos Microalgas.
+
+microalgas <- read_excel("microalgas.xlsx")
+microalgas$tributarios = as.factor (microalgas$tributarios) # Tributarios como factor
+
+head(microalgas) %>%
+  kbl(booktabs = F) %>%
+  kable_classic(full_width = F, html_font = "Cambria")
+```
+
+En la @tbl-tbl1 se presenta un resumen de la base de datos Microalgas.
+
+# [5. Exploracion grafica]{style="color: #045a8d;"}
+
+## [5.1. Figura de elipces]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+M <- cor(microalgas[,2:19]) # Matriz de Correlación (M) 
+```
+
+### [5.1.2. Ambientales VS biologicas]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig1
+#| fig-cap: Relación entre las variables ambientales y los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira. Las elipse con azul intenso representan las relaciones lineales positivas y las de color rojo intenso, corresponden a las relaciones lineales negativas o inversas entre las parejas de variables.
+
+corrplot(M, method = "ellipse", order = 'AOE')  # Figura de correlaciones con elipses
+```
+
+En la @fig-fig1 se observan algunas relaciones lineales fuertes entre taxones como es el caso de ***Surirella*** con ***Girosigma*** y ***Gomphonema***. Las relaciones más fuertes se están dando entre parejas de taxones. Sin embargo, en general no se presentan muchas relaciones lineales fuertes tanto positivas como negativas.
+
+## [5.2. Linealizacion de las variables]{style="color: #3690c0;"}
+
+### [5.2.1. Transformacion de Hellinger y log10]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+
+#Variables biologicas trasformadas con hellinger
+bio.exp = decostand(microalgas[,2:19],"hellinger") 
+
+#Variables ambientales trasformadas con log10
+amb.exp = log10(microalgas[,c(2:19)]+1) 
+
+#p1 =  log10(microalgas[,c(2:19)+1])
+```
+
+Las variables ambientales se trasformaron con logaridmo base 10 más uno para evitar los valores negativos (log10+1). Las variables biológicas (Taxones) fueron trasformados con Hellinger.
+
+### [5.2.2. Ambientales VS biologicas trasformadas]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig2
+#| fig-cap: Relación entre las variables ambientales y trasformados trasformadas.
+
+M_loc_hel1 <- cor(amb.exp, bio.exp)            # Matriz de Correlación (M)
+corrplot(M_loc_hel1, method = "ellipse")
+```
+
+En la @fig-fig2 se observa que las transformaciones (Log10 y Hellinger) mejoraron algunas relaciones negativas entre la Luz y los taxones sin embargo disminuyeron algunas relaciones positivas entre los parejas de taxones.
+
+### [5.2.3. Biologicas VS Biologicas transformadas con Hellinger]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig3
+#| fig-cap: Relación entre los taxones VS los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira.
+
+cor_test1 <- corr.test(bio.exp[,9:18],method = "spearman",alpha = .05)$p
+
+corrplot(corr = cor(bio.exp[,9:18],method = "spearman"),
+         is.corr = TRUE,method = "color",tl.col = "black",tl.cex = 0.8,
+         addCoef.col = 'black',number.cex = 0.6, addgrid.col = 'black', p.mat = cor_test1,insig="blank")
+```
+
+En la @fig-fig3 se observan únicamente relaciones lineales positivas entre parejas de taxones y se descartan las relaciones más bajas. En general todas las relaciones son bastante fuertes las más significativas están dadas entre ***Calonesis*** con ***Girosigma*** y ***Chamaepinnularia*** con ***Eolimna.*** Se observa que en mayor o menor proporcion la presencia de los diferentes taxones se encuentra favoreciendo a los demás taxones.
+
+### [5.2.4. Ambientales VS Biologicas transformadas con Log10 y Hellinger]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig4
+#| fig-cap:  Relación entre las variables ambientales VS los taxones de microalgas perifíticas en los tres tributarios de la cuenca media del Rio Gaira.
+
+cor_test<- corr.test(x = amb.exp[,1:7], y=bio.exp[,9:18],method = "spearman",alpha = .05)$p
+
+# correlograma de especies con variables
+corrplot(corr = cor(x = amb.exp[,1:7], y=bio.exp[,9:18],method = "spearman"),
+         is.corr = TRUE,method = "color",tl.col = "black",tl.cex = 0.8,
+         addCoef.col = 'black',number.cex = 0.6, p.mat = cor_test, insig="blank", addgrid.col = 'black')
+```
+
+En la @fig-fig4 se observan muy pocas relaciones significativas entre las variables fisicoquímicas y los taxones. Se encuentran algunas relaciones negativas entre la Luz y ***Surirella***, ***Lyngbya***, ***Eolimna*** y ***Gomphonema***. En cuanto a las demás parejas de variables se aprecian algunas relaciónes positivas con la temperatura y el pH, siendo la relacion entre la temperatura y ***Surirella*** la más fuerte.
+
+## [5.3. Figuras de cajas]{style="color: #3690c0;"}
+
+Para desarrollar las figuras de cajas se incluyó una nueva columna (Den) en la base de datos, que representa la densidad total de taxones en cada tributario.
+
+### [5.3.1. Densidad total de taxones por tributario]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig5
+#| fig-cap:  Variación en la densidad de microalgas para los tres tributarios de la cuenca media del Rio Gaira.
+
+
+ggplot(microalgas, aes(x=tributarios, y=Den)) + 
+  geom_boxplot(aes(fill = tributarios)) +
+  labs(x="Tributarios", y= "Densidad total") +
+  scale_fill_manual(values = c('#88419d','#99d594','#377eb8')) +
+  theme_bw()
+```
+
+En la @fig-fig5 se puede observar que las cajas se encuentran solapadas y las medianas de los tres tributarios son prácticamente iguales, además existe unan alta dispersión de los datos, lo que indica que no existe una verdadera diferenciación en la densidad de microalgas entre cada tributario evaluado.
+
+### [5.3.2.Densidad de taxones por tributario]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig6
+#| fig-cap: Variación entre la densidad de los diferentes taxones de microalgas perifiticas para los tres tributarios de la cuenca media del Rio Gaira.
+
+library(reshape2)
+ggplot(melt(microalgas[,c(1,10:19)]), aes(x=variable, y=value)) + 
+  geom_boxplot(aes(fill=tributarios)) + 
+  scale_fill_manual(values = c('#88419d','#99d594','#74a9cf')) +
+  labs(x="",y="Densidad total") + 
+  facet_wrap(~ variable,scales="free") + 
+  theme_bw()
+```
+
+En la @fig-fig6 se observa que en general para la mayoria de los taxones no existe una diferencia en la densidad total de microalgas por cada tributario, las medias de los tres tributarios son similares y los intervalos de confianza se encuentran solapados. Para el taxón ***Achnanthes*** se puede observar que en tributario Jabali los datos de densidad se alejan de la tendencia anteriormente mencionada y en otros taxones como ***Girosigma*** y ***Suriella*** los valores de densidad presentan una dispersión mucho mayor en el tributario La Victoria.
+
+### [5.3.3. Fisicoquimicos por tributario]{style="color: #3690c0;"}
+
+```{r}
+microalgas$Luz <- log10(microalgas$Luz)+1
+```
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig7
+#| fig-cap: Distribucion de frecuencia de los factores fisicoquimicos en cada uno de los tres tributarios evaluados.
+
+library(reshape2)
+ggplot(melt(microalgas[,c(1,2:7)]), aes(x=variable, y=value)) + 
+  geom_boxplot(aes(fill=tributarios)) + 
+  scale_fill_manual(values = c('#88419d','#99d594','#74a9cf')) +
+  labs(x="",y="Fisicoquimicos") + 
+  facet_wrap(~ variable,scales="free") + 
+  theme_bw()
+```
+
+En la @fig-fig7 se observa que para todas las variables ambientales los valores de la media son muy similares o incluso iguales en algunos casos para cada uno de los trubutarios, mientras que el rango de los datos varia mucho más entre tributarios para algunas variables como el `Nitrito`. Sin embargo para todos los fisicoquimicos exepto el `Oxigeno` existe la precencia de outliers los cuales pueden causar sesgos en parametros como la media, distarcionar considerablemente el analisis grafico alterando las escalas lo que puede ocacionar que los datos parescan más dipersos de lo que en verdad son. Todo esto puede ocultar patrones importantes llevando a conclusiones sesgadas.
+
+### [5.4. Figuras de barras]{style="color: #3690c0;"}
+
+Los graficos de barras se elaboraron con Exel, utilizando las ocho replicas dentro de cada tributario.
+
+![Densidad total de taxones en cada replica para los tres tributario. Donde VIC: La Victoria; PIC: La Picua y JAB: Jabali](Densidad%20total%20de%20microalgas%20en%20cada%20tributario..png){#fig-Figura8 fig-align="center"}
+
+@fig-Figura8 En general los valores más altos de densidad se observaron en La Victoria el cual es el tributario con mayor nivel de intervención antropogénica debido a la deforestación de la fauna nativa para el cultivo de café. Esto se podría relacionar con un mayor ingreso de nutrientes lo que favorece el crecimiento de las microalgas. En contraste los valores más bajos de densidad se observaron en el tributario Jabali el cual presenta niveles bajos de intervención antropogénica. 
+
+![Densidad de los diferentes taxones en cada replica para los tres tributario. Donde VIC: La Victoria; PIC: La Picua y JAB: Jabali](Densidad%20por%20cada%20genero%20de%20microalgas%20perifíticas%20en%20cada%20tributario..png){#fig-Figura9 fig-align="center"}
+
+@fig-Figura9 En general los valores más altos de densidad se observaron en La Victoria el cual es el tributario con mayor nivel de intervención antropogénica debido a la deforestación de la fauna nativa para el cultivo de café. Esto se podría relacionar con un mayor ingreso de nutrientes lo que favorece el crecimiento de las microalgas. En contraste los valores más bajos de densidad se observaron en el tributario Jabali el cual presenta niveles bajos de intervención antropogénica. 
+
+# [6. Análisis de Componentes Principales (PCA)]{style="color: #045a8d;"}
+
+```{r, warning=FALSE,message=FALSE }
+# Variables ambientales
+amb.pca = log10(microalgas[,c(2:8)]+1)
+
+# Variables biologicas transformados con Hellinger
+bio.pca = decostand(microalgas[,c(10:19)],"hellinger")
+```
+
+## [6.1. Contribución de cada dimensión o componente principal]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig8
+#| fig-cap: Contribución de cada componente.
+
+acp <- PCA(bio.pca, ncp = 5, scale.unit = T, graph = FALSE) # esto hace parte de la libreria factominer 
+
+# observar la contribución de cada dimensión o componente
+fviz_screeplot(acp,addlabels=TRUE)+
+  labs(title = "",y="Varianza explicada (%)",x="Componente")
+```
+
+En la @fig-fig8 se obserba que el primer componente recoge una varianza del `32.2%` mientras que el segundo componente recoge un `21.4%` de la varianza.
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig10
+#| fig-cap: Contribución de variables en el componente uno.
+
+# Contribución de variables en componente 1
+fviz_contrib(acp, choice = "var", axes = 1)
+```
+
+En la @fig-fig10 se obserba que ***Chamaepinnularia***, ***Lyngbya, Calonesis, Achananthes*** son los taxones de mayor aporte en el primer componente.
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig11
+#| fig-cap: Contribución de variables en el segundo componente.
+
+# Contribución de variables componente 2
+fviz_contrib(acp, choice = "var", axes = 2)
+```
+
+En la @fig-fig11 se obserba que ***Surirella***, ***Gomphonema, Girosigma*** son los taxones de mayor aporte en el segundo componente.
+
+## [6.2. Figura del PCA]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig12
+#| fig-cap: Análisis de componentes principales (PCA). A la izquierda se presenta el biplot de las componentes principales por Tributario (elipses). Los vectores representan los taxones y los puntos las variables ambientales. A la derecha se observan el porcentaje de varianza explicada de las variables ambientales en la dimensión 1 y 2.
+
+res.pca<- PCA(bio.pca, quali.sup = 1, scale.unit = T, graph = FALSE)
+
+p<- fviz_pca_biplot(res.pca, geom.ind = "point", col.var = "blue", habillage = microalgas$tributarios, repel = TRUE, addEllipses = TRUE,  ellipse.level=0.95, legend.title= "profundidad",  palette = c("#00AFBB", "#E7B800", "#adb5bd","#a1d99b","#fc9272","#fa9fb5")) + theme_bw()
+
+acp2<- PCA(amb.pca, graph = FALSE, ncp = 13 )
+
+coord<- acp2$var$coord
+coord<- coord[,1:2]
+
+fviz_add(p, coord, color ="black", geom= c("text", "point"), repel = TRUE, labelsize = 4, pointsize = 1)
+```
+
+En la @fig-fig12 se observa un solapamiento en los 3 tributarios del tramo medio del rio Gaira, además muestra una gran similitud en las variables fisicoquímicas por lo que existe condiciones para que la composición de taxones sea muy similar en los 3 tributarios. Dentro de las especies en la cual se realizó el PCA solo se encontró que ***Lyngbya*** y ***Cocconeis*** no se comparten en los 3 tributarios, estándo presentes solo en PIC y VIC. 
+
+# [7. Escalamiento multidimencional no metrico (NMDS)]{style="color: #045a8d;"}
+
+```{r, warning=FALSE,message=FALSE }
+bio.nmds = decostand(microalgas[,10:19],"hellinger") # datos para el nmds
+#bio.nmds2 = microalgas[,10:19]
+
+datos.nmds <- metaMDS(bio.nmds,trace = FALSE, distance = "euclidean") # NMDS
+```
+
+```{r, warning=FALSE,message=FALSE }
+# 1) Coordenadas de los sitios y el factor (coord_sit)
+
+coord_sit <- as.data.frame(datos.nmds$points)   # Coordenadas de los sitios
+coord_sit$sitio <- rownames(coord_sit)          # Crear una columna con nombres de los sitios
+coord_sit$Tributarios <- microalgas$tributarios            # Adicionar columna de Tributarios por región
+
+# 2) Coordenadasde las especies (coord_tax) 
+coord_tax <- as.data.frame(datos.nmds$species)  # Dos primeros ejes
+coord_tax$especies <- rownames(coord_tax)       # Insertar columna con las especies
+coord_sit
+```
+
+## [7.1. Figura del NMDS]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig13
+#| fig-cap: Escalamiento multidimencional no métrico para los taxones de microalgas en los tres tributarios.
+
+p1<- ggplot(coord_sit, aes(x=MDS1, y=MDS2)) +
+# Sitios
+  geom_point(data = coord_sit,aes(MDS1,MDS2,colour=Tributarios),size=2)+
+  scale_shape_manual(values = c(21:25))+
+  
+# Especies  
+  geom_segment(data = coord_tax,aes(x = 0, y = 0, xend = MDS1, yend = MDS2), 
+               arrow = arrow(angle=0,length = unit(0,"cm"),
+                             type = "closed"),linetype=0, size=0,colour = "red")+
+  
+#Factor
+  stat_ellipse(geom = "polygon", aes(fill = Tributarios), alpha = 0.15)+
+  
+  geom_hline(yintercept=0,linetype=2,size=0.6, color="gray7") + 
+  geom_vline(xintercept=0,linetype=2,size=0.6, color="gray7")+
+  guides(shape=guide_legend(title=NULL,color="black"),
+         fill=guide_legend(title=NULL))+
+  theme_bw()+
+  theme(panel.grid=element_blank(), legend.position = "top")+
+    geom_text_repel(data = coord_tax,aes(MDS1,MDS2,label=especies),colour = "black")+
+  labs(x="nMDS 1", y="nMDS2")+ 
+  guides(fill = guide_legend(title = "Tributarios", nrow = 2))
+
+
+p1 + geom_text(data = data.frame(x = 0.5, y = 0.25, label = "Estrés = 0.09773626 "),
+mapping = aes(x = x, y = y, label = label),
+fontface = 2, inherit.aes = FALSE)
+
+```
+
+La @fig-fig13 muestra que el stress del `NMDS` es de `0,043` lo cual indica que la representación bidimensional de los datos es buena. Se obserba un solapamiento entre las elipses lo cual indica que los tres tributarios son bastante similares en terminos de la dendidad de taxones, en el caso de Jabali tiende ligeramente a separarse de los demás tributarios. Existe una alta similitud entre los taxones ***Gomphonema Cocconeis, Girosigma*** y ***Chamaepinnularia*** las cuales se encuentran concentradas para los tres tributarios, mientras que los taxones ***Achnanthes, Lyngbya, Amphora*** y ***Surirella*** se encuentran más diferenciados.
+
+# [8. Análisis Clúster - CLA]{style="color: #045a8d;"}
+
+```{r, warning=FALSE,message=FALSE }
+# Datos para el cluster
+
+colnames(microalgas) = c("tributarios", "Amonio", "Nitrito", "Nitrato", "Oxigeno",
+ "pH", "Luz", "Temp", "Den", "Achnanthes","Amphora","Caloneis","Chamaepinnularia","Cocconeis","Eolimna","Girosigma","Gomphonema","Surirella","Lyngbya")
+
+# Variables biologicas trasformadas con hellinger
+bio.cla = decostand(microalgas[,10:19],"hellinger") 
+
+# PASO 1. Distancia entre observaciones
+d.euclid <- dist(bio.cla) # Matriz de distancia
+
+ 
+
+
+```
+
+```{r, warning=FALSE,message=FALSE }
+# PASO 2. Elección del método de agrupación de mayor ajuste 
+
+# Método 1. Vecino más cercano "Cl.single", función "hclust" y método "single"
+Cl.single <- hclust(d.euclid,method="single")
+
+# Método 2. Vecino más lejano "Cl.complete", función "complete"  
+Cl.complete<-hclust(d.euclid,method="complete")
+
+# Método 3. UPGMA función "average" Unión Promedio no Ponderado
+Cl.upgma<-hclust(d.euclid,method="average")
+
+# Método 4. UPGMC función "mcquitty" Unión Promedio Ponderado
+Cl.upgmc<-hclust(d.euclid,method="mcquitty")
+
+# Método 5. WPGMA función "centroid"
+Cl.wpgma<-hclust(d.euclid,method="centroid")
+
+# Método 6. WPGMC función "median"
+Cl.wpgmc<-hclust(d.euclid,method="median")
+
+# Método 7. WARD, función "ward"
+Cl.ward<-hclust(d.euclid,method="ward.D")
+```
+
+```{r, warning=FALSE,message=FALSE }
+# 2.1 Correlación Cofenética
+
+# (1) Correlación cofenpetica  para "single"
+cofenet1 <- cophenetic(Cl.single)
+simple = cor(d.euclid,cofenet1)
+
+# (2) Correlación cofenética  para "complete"
+cofenet2<-cophenetic(Cl.complete)
+compl = cor(d.euclid,cofenet2)
+
+# (3) Correlación cofenética  para "average"
+cofenet3<-cophenetic(Cl.upgma)
+upgma = cor(d.euclid,cofenet3)
+
+# (4) CCorrelación cofenética  para "mcquitty"
+cofenet4<-cophenetic(Cl.upgmc)
+upgmc = cor(d.euclid,cofenet4)
+
+# (5) Correlación cofenética  para "centroid"
+cofenet5<-cophenetic(Cl.wpgma)
+wpgma = cor(d.euclid,cofenet5)
+
+# (6) Correlación cofenética  para "median"
+cofenet6<-cophenetic(Cl.wpgmc)
+wpgmc = cor(d.euclid,cofenet6)
+
+# (7) Correlación cofenética  para "ward"
+cofenet7<-cophenetic(Cl.ward)
+ward = cor(d.euclid,cofenet7)
+```
+
+## [8.1. Tabulación de los valores cofenéticos]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+#| label: tbl-tbl2
+#| tbl-cap: Valores cofenéticos.
+
+# data frame para cofenéticos
+cofeneticos = data.frame(simple,compl,upgma,upgmc,
+                         wpgma,wpgmc,ward)
+
+# cofenéticos por cada métodos (Met)
+cofenet=data.frame(Met = 1:7,Cofen=t(round(cofeneticos,3)))
+
+# tabla con orden descendente de cofenéticos
+cof_ordenado = cofenet[order(cofenet$Cofen, decreasing = TRUE), ]
+
+cof_ordenado %>%
+  kbl(caption = "", booktabs = F, longtable = T) %>%
+  kable_classic(full_width = F, html_font = "Cambria")
+```
+
+En la @tbl-tbl2 se presentan los valores confeneticos en orden descendiente.
+
+```{r, warning=FALSE,message=FALSE }
+#| label: tbl-tbl3
+#| tbl-cap: Correlaciones cofenéticas.
+
+# convertir matricesde distancia a vectores
+d.euclid <- as.vector(d.euclid)
+d.cofenet1 <- as.vector(cofenet1)
+d.cofenet2 <- as.vector(cofenet2)
+d.cofenet3 <- as.vector(cofenet3)
+d.cofenet4 <- as.vector(cofenet4)
+
+# crear un data frame con los vectores y agregar una columna de etiquetas
+simple1 <- data.frame(d.euclid, d.cofenet1, d.cofenet2, d.cofenet3, d.cofenet4)
+
+head(simple1) %>%
+  kbl(caption = "", booktabs = F, longtable = T) %>%
+  kable_classic(full_width = F, html_font = "Cambria")
+```
+
+## [8.2. Número de grupos formados - figura de silueta]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+# Base de datos (biologica)
+bio <- decostand(microalgas[,10:19],"hellinger")
+# Distancia utilizada (d.euclid)
+d.euclid <- dist(bio)
+# Método de agrupamiento seleccionado (cl.upgma)
+Cl.upgma<-hclust(d.euclid,method="average")
+```
+
+```{r, warning=FALSE,message=FALSE }
+library(cluster)
+# 1. Crear un vector vacío (bio.vacio) con asw valores
+bio.vacio <- numeric(nrow(bio))
+
+# 2. Silueta "sil" 
+for(k in 2: (nrow(bio)-1)){
+    sil <- silhouette(cutree(Cl.upgma,k=k),d.euclid)
+    bio.vacio[k]<-summary(sil)$avg.width} 
+
+# 3. Mejor o mayor amplitud de silueta (2 particiones)
+k.mejor <- which.max(bio.vacio)
+```
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig14
+#| fig-cap: Figura de silueta.
+
+# Grafica de silueta
+plot(1:nrow(bio),bio.vacio,type="h",
+     main="Silueta-Número Óptimo de Clusters", xlab="Número de grupos",
+     ylab="Amplitud promedio de  silueta")
+     
+axis(1,k.mejor,paste("optimum",k.mejor,sep="\n"),col="red",
+     font=2,col.axis="red")
+     
+points(k.mejor,max(bio.vacio),pch=16,col="red",cex=1.5)
+```
+
+Según el metodo de silueta el numero optimo de grupos para el conjunto de datos es de dos k cluster.
+
+## [8.3. Figura del dendograma jerárquico]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig15
+#| fig-cap: Dendograma jerárquico final con los dos grupos asignados.
+
+# Dendograma final 
+fviz_dend(Cl.upgma, k = 2,        # k grupos
+          cex = 0.9,              # tamaño del texto de las observaciones
+          ylab = "Distancia Euclídea",  # Rotulo de la distancia
+          main = "Unión Promedio no Ponderada (UPGMA)", # Rotulo de título
+          lower_rect = 0,           # Inicio de los rectángulos en cero
+          k_colors = c("#00AFBB","#54278f","#FC4E07"),
+          color_labels_by_k = TRUE,    # Colores para cada grupo
+          rect = TRUE)                 # Rectángulos de cada grupo
+```
+
+El dendograma jerárquico para dos k clúster fue determinado por el método de silueta (@fig-fig14), en el clúster azul, se encuentran solo 2 observaciones, las cuales corresponden al tributario La Victoria mientras que las observaciones restantes se encuentran concentradas en un solo clúster (morado). Esto indica una gran similaridad entre la densidad de los taxones en los tres tributarios estudiados. Dentro del segundo clúster (morado) se identifican algunas observaciones que se diferencian parcialmente como la 9 y 17 las cuales corresponden a La Victoria y La Picua respectivamente. En general el modelo no logra clasificar los tributarios basado en la densidad de taxones.
+
+## [8.4. Figura del dendograma no jerárquico]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+# Matriz de distancia
+d.euclid <- dist((microalgas[,c(10:19)]))
+
+# Método 3. UPGMA función "average" Unión Promedio no Ponderado
+Cl.upgma<-hclust(d.euclid,method="average")
+
+# Variable agrupadora con k=2 clúster
+grp <- cutree(Cl.upgma, k = 2)    # Grupos generados "grp"  
+grl <- levels(factor(grp))        # Rotulos de los grupos formados
+
+# Incluir la variable agrupadora en la base de datos
+datos.1=data.frame(grp,microalgas)       # Nuevo dataframe con la variable agrupadora (gr)
+```
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig16
+#| fig-cap: Dendograma no jerárquico final.
+
+library(factoextra)
+fviz_cluster(list(data = bio, cluster = grp),
+             palette = c("#2E9FDF","#54278f"), # Colores para cada grupo
+             ellipse.type = "confidence",        # Elipses
+             repel = TRUE,                 # Elimina solapamiento de observaciones
+             show.clust.cent = FALSE,      # Muestra a los clúster centrados
+             ggtheme = theme_bw())     # Tipo de fondo tomado de ggplot2
+```
+
+En la @fig-fig16 se observa claramente la formación de dos k clúster, sin embargo, estos grupos no alcanzan a recoger el 50% de los datos de cada clúster, en especial en el segundo clúster. En general existe una baja capacidad para discriminar el conjunto de datos, los cuales se encuentran muy dispersos fuera de los grupos, algunas observaciones se alejan considerablemente de los grupos (1,2,9,18) y otras se mezclan entre los grupos (4 y 19). Sumado a esto la varianza capturada en las primeras dos dimensiones apenas alcanza el 53,6%.
+
+## [8.5. Mapa de calor]{style="color: #3690c0;"}
+
+```{r, warning=FALSE,message=FALSE }
+# Promedio para los 10 taxones
+
+# Extracción de los promedios de las variables para cada especie
+library(tidyverse)
+promedios <- microalgas %>%      
+  subset(select = c("tributarios","Achnanthes","Amphora","Caloneis",
+                    "Chamaepinnularia","Cocconeis","Eolimna","Girosigma",     
+                    "Gomphonema","Surirella","Lyngbya")) %>%
+  na.omit() %>%
+  group_by(tributarios) %>%
+  summarize(across(everything(), mean))
+  
+promedios  <- data.frame(promedios) # Guardar promedios como dataframe
+# promedios
+```
+
+```{r, warning=FALSE,message=FALSE }
+# Trasformar los promedios a formato matricial
+
+# Seleccionar columnas de 2 a 10 del data frame microalgas1 y convertirlas en matriz
+promedios2 <- promedios %>% 
+              subset(select = c(2:11)) %>% 
+              as.matrix()
+```
+
+```{r, warning=FALSE,message=FALSE }
+# Asignar los valores de la primera columna de microalgas1 como nombres de fila en la matriz microalgas2
+rownames(promedios2) <- promedios[,1]
+```
+
+```{r, warning=FALSE,message=FALSE }
+# Opción 2. Mapa de calor con paquete "stats"
+hclust.fq <- function(promedios2) 
+             hclust(promedios2, method="average")   # Inserción de UPGMA
+```
+
+```{r, warning=FALSE,message=FALSE }
+#| label: fig-fig17
+#| fig-cap: Mapa de calor que relaciona los taxones con los tributarios. 
+
+library("gplots")
+heatmap.2(promedios2,         # Base de datos en formato matricial
+          margins=c(5,12),    # Margenes de la figura
+          scale = "row",      # estándariza variables diferentes.
+          col = bluered(100),                 # Colores del mapa de calor
+     #     xlab ="Generos de microalgas", 
+          ylab= "Tributarios", 
+          main = "Clasificación de microalgas",   
+          trace = "none", 
+          density.info = "none",
+          distfun = dist,          # Se puede usar vegdist de "vegan" 
+          hclustfun=hclust.fq)     # Agrupamiento UPGMA
+```
+
+En la @fig-fig17 pendiente
+
+# [9. Análisis Discriminante Lineal-LDA]{style="color: #045a8d;"}
+
+### [9.1. Supuestos del LDA]{style="color: #3690c0;"}
+
+El modelo presenta dos supuestos, la normalidad multivariada y la homogenidad de covarianzas. En el caso de la normalidad, no fue posible calcular el supuesto. Por otro lado si se cumple el supuesto de homogenidad.
+
+### [9.1.2 Supuesto de normalidad multivariada]{style="color: #3690c0;"}
+
+```{r,warning=FALSE,message=FALSE}
+# datos de la victoria.
+VIC   <- microalgas %>% 
+             filter(tributarios == "VIC") %>%       
+             subset(select = c("Achnanthes","Amphora","Caloneis","Chamaepinnularia",                      "Cocconeis", "Eolimna","Girosigma","Gomphonema","Surirella",                        "Lyngbya")) %>% as.matrix()
+
+# datos de la picua.
+PIC  <- microalgas %>% 
+             filter(tributarios == "PIC") %>%       
+             subset(select = c("Achnanthes","Amphora","Caloneis","Chamaepinnularia",                      "Cocconeis", "Eolimna","Girosigma","Gomphonema","Surirella",                        "Lyngbya")) %>%              as.matrix() 
+
+# datos de jabali.
+JAB <- microalgas %>% 
+             filter(tributarios == "JAB") %>%       
+             subset(select = c("Achnanthes","Amphora","Caloneis","Chamaepinnularia",                      "Cocconeis", "Eolimna","Girosigma","Gomphonema","Surirella",                        "Lyngbya")) %>%              as.matrix()    
+```
+
+```{r,warning=FALSE,message=FALSE}
+# Prueba de normalidad para cada tributario
+
+# norm1 <- mshapiro.test(t(PIC)) Matriz singular
+# norm2 <- mshapiro.test(t(VIC)) Matriz singular
+# norm3 <- mshapiro.test(t(JAB)) Matriz singular
+```
+
+No fue posible calcular el supuesto de normalidad devido a que las matrices son singulares, por lo anterior, se puede considerar que no se cumple.
+
+### [9.1.3 Supuesto de homogeneidad de covarianzas]{style="color: #3690c0;"}
+
+```{r,warning=FALSE,message=FALSE}
+# Pruebas de Homogeneidad de covarianzas paquete "vegan"
+microalgas.d <- dist(microalgas[,c(10:19)])                # Matriz de distancias
+microalgas.homoge <- betadisper(microalgas.d, microalgas$tributarios)      # Permutest
+```
+
+```{r,warning=FALSE,message=FALSE}
+# Prueba con anova permutacional
+anova(microalgas.homoge)  # Se cumple el supuesto de homogeneidad
+```
+
+Se cumple el supuesto de Homogeneidad de covarianzas (pvalor = 0.12 \> alfa = 0.05)
+
+```{r,warning=FALSE,message=FALSE}
+# 2) Prueba permutacional
+permutest(microalgas.homoge)   # Se cumple el supuesto de homogeneidad 
+```
+
+Se cumple el supuesto de Homogeneidad de covarianzas (pvalor = 0.13 \> alfa = 0.05)
+
+#### Probabilidad de clasificación dentro de cada Tributario de la cuenca media del rio Gaira.
+
+```{r,warning=FALSE,message=FALSE }
+dis <- lda(tributarios ~ Achnanthes + Amphora + Caloneis + Chamaepinnularia +      Cocconeis + Eolimna + Girosigma + Gomphonema + Surirella + Lyngbya, 
+           data = microalgas)
+round(dis$prior,2)
+```
+
+Los tres grupos presentan la misma probabilidad de clasificar en los tres tributarios dado que tienen igual numero de datos.
+
+```{r,warning=FALSE,message=FALSE }
+#Grupos de medias para las variables 
+#round(dis$means,2)
+```
+
+```{r,warning=FALSE,message=FALSE }
+# Autovalores estándarizados (pesos de las variables en cada eje)
+#round((Cs <- dis$scaling),2)
+```
+
+```{r,warning=FALSE,message=FALSE }
+# Coordenadas de las seis primeras observaciones en cada eje canónico
+#round(head(Fp <- predict(dis)$x),2)
+```
+
+#### Tabla de contingencia
+
+```{r,warning=FALSE,message=FALSE }
+# Evaluación de desempeño del AD (método 1)
+attach(microalgas)
+group<-predict(dis,method="plug-in")$class
+(tabla<-table(tributarios,group))
+```
+
+Para el caso de La Victoria y Jabali el 12.5% de las observaciones pertenecen a otro grupo. Mientras que en La Picua el 100% corresponde al grupo.
+
+#### Porcentaje de clasificación correcta
+
+```{r,warning=FALSE,message=FALSE }
+# Porcentaje de clasificación correcta 
+round(diag(prop.table(tabla, 1)),2)*100
+```
+
+La tabla de validación en términos porcentuales para los tres grpos indica que en el tributario La Picua el 100% de los taxones discriminan correctamente en su genero mientras que en Jabali y La Victoria solo el 88% de los taxones discriminan correctamente.
+
+## [9.2. Figura del LDA]{style="color: #3690c0;"}
+
+```{r,warning=FALSE,message=FALSE }
+# Escores o coordenadas de las observaciones en cada eje can?nico
+Fp <- predict(dis)$x
+```
+
+```{r,warning=FALSE,message=FALSE }
+# Grupos asignados por el AD
+group<-predict(dis,method="plug-in")$class
+```
+
+```{r,warning=FALSE,message=FALSE }
+# Coordenadas y grupos asignados
+microalgas.coord=data.frame(tributarios=group,Fp)
+```
+
+```{r,warning=FALSE,message=FALSE }
+#| label: fig-fig18
+#| fig-cap: pendiente
+
+# Figura del LDA
+attach(microalgas)
+scatterplot(LD2~LD1 | tributarios, data=microalgas.coord,reg.line=FALSE, 
+            smooth=F, spread=F,span= 1,grid=F,
+            legend=list(coords="bottomright"), 
+            ellipse=T,font.lab=2, pch=c(15,16,17,18,19),
+            col=c('#e41a1c','#984ea3','#377eb8','#33a02c'),
+            main="Análisis discriminante",
+            font.main=2,cex.main=2,cex.lab=1.5,
+            xlab="Eje1", ylab="Eje2")
+```
+
+En la @fig-fig18 no existe una buena discriminación de los grupos de datos por lo que se muestra un solapamiento entre estos.
+
+# [10.Análisis discriminante canónico - CDA]{style="color: #045a8d;"}
+
+```{r,warning=FALSE,message=FALSE }
+attach(microalgas)
+```
+
+```{r,warning=FALSE,message=FALSE }
+# Modelo Lineal multivariado con las variables morfometricas de los taxones
+mod <- lm(cbind(Achnanthes,Amphora,Caloneis,Chamaepinnularia,Cocconeis,     Eolimna,Girosigma,Gomphonema,Surirella,Lyngbya) ~ tributarios,microalgas)
+```
+
+```{r,warning=FALSE,message=FALSE }
+# Análisis discriminante canónico - ADC
+can <- candisc(mod, term="tributarios",data=microalgas,ndim=1)
+```
+
+## [Figura del CDA]{style="color: #3690c0;"}
+
+```{r,warning=FALSE,message=FALSE }
+#| label: fig-fig19
+#| fig-cap: pendiente
+
+# Figura del ADC
+plot(can,titles.1d = c("Puntuación canónica", "Estructura"))
+```
+
+En la @fig-fig19 se define a la discriminación de los grupo con un solo eje canónico el cual explica la variación de los datos. La orientación de los vectores (Taxones), en relación a las cajas, indica su importancia para discriminar a cada tributario o grupo en comparación.
+
+# [11. Permanova de un factor (Taxones de microalgas)]{style="color: #045a8d;"}
+
+```{r, warning=FALSE,message=FALSE }
+# Variables ambientales
+amb.perm = log10(microalgas[,c(2:8)]+1)
+
+# Variables biologicas transformados con Hellinger
+bio.perm = decostand(microalgas[,c(10:19)],"hellinger")
+```
+
+## [11.1. Distancia entre las observaciones]{style="color: #3690c0;"}
+
+```{r,warning=FALSE,message=FALSE}
+# Distancia Euclídea para los taxones de microalgas 
+micro.dist <- dist(bio.perm,"euclid") # round(micro.dist, 2)
+```
+
+## [11.2. Prueba de hipótesis multivariada con el PERMANOVA]{style="color: #3690c0;"}
+
+```{r,warning=FALSE,message=FALSE}
+# PERMANOVA 
+library(vegan) 
+micro.permanova <- adonis2(micro.dist ~ microalgas$tributarios, perm=1000)
+micro.permanova
+```
+
+Segun el modelo PERMANOVA de un factor existen diferencias bien definidas entre las densidades de los taxones de microalgas perifiticas para los tres tributarios de la cuenca media del rio gair (Seudo F= 4.651, g.l= 2 y 21, p-value = 0.00099\*\*\*).
+
+## [11.3. Efecto de las variables morfométricas en la diferenciación de los grupos]{style="color: #3690c0;"}
+
+```{r,warning=FALSE,message=FALSE}
+attach(microalgas) 
+micro.permanova <- adonis(micro.dist ~ Amphora + Caloneis + Chamaepinnularia + Cocconeis + Eolimna + Girosigma + Gomphonema + Surirella + Lyngbya, perm=1000, microalgas)
+
+micro.permanova$"aov.tab"
+```
+
+Se observa que los taxones ***Amphora***, ***Lyngbya***, presentan un efecto altamente significativo en la diferenciacion respecto a la densidad en cada tributario. Mientras que, los taxones ***Eolimna, Caloneis***, ***Chamaepinnularia,*** y ***Gomphonema*** presentan un efecto moderado. Fimalmente los taxones ***Girosigma*** y ***Surirella*** aportan en la diferenciacion de los taxones en cada tributario (p-value = 0.067932; p-value = 0.671329)
+
+# [12. Permanova de un factor (Variables fisicoquimicas)]{style="color: #045a8d;"}
+
+## [12.1. Distancia entre las observaciones]{style="color: #3690c0;"}
+
+```{r,warning=FALSE,message=FALSE}
+# Distancia Euclídea para los taxones de microalgas  
+micro.dist1 <- dist(amb.perm,"euclid") # round(micro.dist, 2)
+```
+
+## [12.2. Prueba de hipótesis multivariada con el PERMANOVA]{style="color: #3690c0;"}
+
+```{r,warning=FALSE,message=FALSE}
+# PERMANOVA  
+library(vegan)  
+micro.permanova1 <- adonis2(micro.dist1 ~ microalgas$tributarios, perm=5000) 
+micro.permanova1
+```
+
+Segun el modelo PERMANOVA de un factor no existen diferencias entre los valores fisicoquimicos para los tres tributarios de la cuenca media del rio gair (Seudo F= 0.044, g.l= 2 y 21, p-value = 0.8428).
+
+## [12.3. Efecto de las variables morfométricas en la diferenciación de los grupos]{style="color: #3690c0;"}
+
+```{r,warning=FALSE,message=FALSE}
+attach(microalgas)  
+micro.perm <- adonis(micro.dist1 ~ Amonio + Nitrito + Nitrato + Oxigeno + pH + Luz + Temp, perm=5000, microalgas)  
+
+micro.perm$"aov.tab"
+```
+
+Se observa que ninguaportan en la diferenciacion de los taxones en cada tributario (p-value = 0.067932; p-value = 0.671329)
+
+```{=html}
+<style> 
+body { text-align: justify} 
+</style>
+```
